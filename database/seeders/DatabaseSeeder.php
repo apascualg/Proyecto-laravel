@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Concert;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // User::factory(10)->create();
+        //los seeders se llaman siempre asi. Te lo vas copiando entre proyectos.
+        $this->call([
+            ArtistaSeeder::class,
+            ConcertSeeder::class,
+        ]);
         // User::factory(10)->create();
 
         User::factory()->create([
