@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+@extends('layouts.app')
+@section('content')
 <form action="{{route('concerts.store')}}" method="POST">
     @csrf
     <p>
@@ -50,9 +44,16 @@
         <button type="submit">Crear</button>
     </p>
 </form>
-
-</body>
-</html>
-
-
-
+<style>
+    button{
+        padding:10px 20px;
+        background-color: #d4d7dc;
+    }
+    h1{
+        font-size: 20px !important;
+    }
+    a{
+        text-decoration: underline;
+    }
+</style>
+@endsection

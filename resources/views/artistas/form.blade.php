@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Nuevo artista</title>
-</head>
-<body>
-<h1>Nuevo artista</h1>
-
-<a href="{{ route('artistas.index') }}">Tornar</a>
+@extends('layouts.app')
 <!-- Action te lleva a una ruta con POST casi siempre -->
 <!-- route es el nombre que le has puesto a la ruta tu mismo en web.php -->
-<h1>{{ $vista == 'update' ? 'Modificar ' . $artista->nom : 'Crear un nuevo artista' }}</h1>
+@section('title', $vista == 'update' ? 'Modificar ' . $artista->nom : 'Crear un nuevo artista')
+@section('content')
+    <h1>Nuevo artista</h1>
+    <a href="{{ route('artistas.index') }}">Tornar</a>
 <form action="{{ $vista == 'update' ? route('artistas.update', $artista->id) : route('artistas.store') }}" method="POST">
     <!-- esto  hay que ponerlo siempre-->
     <!-- habeis oido hablar de cors -->
@@ -53,6 +47,16 @@
         <button type="submit">{{ $vista == 'update' ? 'Modificar' : 'Crear' }}</button>
     </p>
 </form>
-
-</body>
-</html>
+<style>
+    button{
+        padding:10px 20px;
+        background-color: #d4d7dc;
+    }
+    h1{
+        font-size: 20px !important;
+    }
+    a{
+        text-decoration: underline;
+    }
+</style>
+@endsection

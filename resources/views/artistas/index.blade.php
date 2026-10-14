@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Artistas</title>
-</head>
-<body>
-<h1>Artistas</h1>
-
+@extends('layouts.app')
 <a href="{{ route('artistas.create') }}"> CREAR UN NOU ARTISTA
 </a>
-
 <table border="1">
     <tr>
         <th>Nombre</th>
@@ -42,6 +34,4 @@
         </tr>
     @endforeach
 </table>
-</body>
-</html>
 
