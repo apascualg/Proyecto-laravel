@@ -6,7 +6,7 @@
 <body>
 <h1>Artistas</h1>
 
-<a href="{{ route('artistas.create') }}"> LINK
+<a href="{{ route('artistas.create') }}"> CREAR UN NOU ARTISTA
 </a>
 
 <table border="1">

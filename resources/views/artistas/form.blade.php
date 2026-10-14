@@ -22,11 +22,13 @@
     <p>
         <label for="nom">Nombre:</label><br>
         <input type="text" name="nom" id="nom" value="{{ old('nom', $artista->nom ?? '') }}">
+        @error('nom') <span style="color: red"> {{ $message }} </span> @enderror
     </p>
 
     <p>
         <label for="pais">País:</label><br>
         <input type="text" name="pais" id="pais" value="{{ old('pais', $artista->pais ?? '') }}">
+        @error('pais') <span style="color: red"> {{ $message }} </span> @enderror
     </p>
 
     <p>

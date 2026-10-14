@@ -15,20 +15,26 @@
                 <option value="{{ $artista->id }}">{{ $artista->nom }}</option>
             @endforeach
         </select>
+
     </p>
     <p>
         <label for="nom">Nombre:</label><br>
         <input type="text" name="nom" id="nom">
+        @error('nom') <span style="color: red"> {{ $message }} </span> @enderror
+
     </p>
 
     <p>
         <label for="data_hora">Data:</label><br>
         <input type="datetime-local" name="data_hora" id="data">
+        @error('data_hora') <span style="color: red"> {{ $message }} </span> @enderror
+
     </p>
 
     <p>
         <label for="durada_minuts">Durada:</label><br>
         <input type="number" name="durada_minuts" id="durada">
+        @error('data_hora') <span style="color: red"> {{ $message }} </span> @enderror
     </p>
 
     <p>
