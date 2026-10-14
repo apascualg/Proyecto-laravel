@@ -34,11 +34,13 @@
     <p>
         <label for="bio">Bio:</label><br>
         <textarea name="bio" id="bio">{{ old('bio', $artista->bio ?? '') }}</textarea>
+        <span> (Opcional) </span>
     </p>
 
     <p>
         <label for="imatge_url">Imatge (URL):</label><br>
         <input type="text" name="imatge_url" id="imatge_url" value="{{ old('imatge_url', $artista->imatge_url ?? '') }}">
+        <span> (Opcional) </span>
     </p>
 
     <p>
