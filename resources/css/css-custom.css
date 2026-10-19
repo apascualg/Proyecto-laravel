@@ -1,8 +1,25 @@
+/*
+
+
+
+
+                CADA VEZ QUE QUERAMOS APLICAR EL CSS TENEMOS QUE HACER UN 'npm run build'
+
+
+
+
+                                                                                                */
+h2 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
 table{
-    border: 1px solid black
+    border: 4px solid black !important;
 }
 table img{
     height: 50px;
     width: 50px;
     object-fit: fill;
 }
+

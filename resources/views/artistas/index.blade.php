@@ -1,7 +1,7 @@
 @extends('layouts.app')
+@vite('resources/css/css-custom.css')
 <a href="{{ route('artistas.create') }}"> CREAR UN NOU ARTISTA
 </a>
-@vite('resources/css/css-custom.css')
 <table border="1">
     <tr>
         <th>Nombre</th>

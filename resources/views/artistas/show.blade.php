@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@vite('resources/css/css-custom.css')
 <!DOCTYPE html>
 <html>
 <head>

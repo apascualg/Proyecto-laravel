@@ -3,6 +3,8 @@
 <!-- route es el nombre que le has puesto a la ruta tu mismo en web.php -->
 @section('title', $vista == 'update' ? 'Modificar ' . $artista->nom : 'Crear un nuevo artista')
 @section('content')
+
+    @vite('resources/css/css-custom.css')
     <h1>Nuevo artista</h1>
     <a href="{{ route('artistas.index') }}">Tornar</a>
 <form action="{{ $vista == 'update' ? route('artistas.update', $artista->id) : route('artistas.store') }}" method="POST">
