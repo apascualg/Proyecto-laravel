@@ -22,7 +22,7 @@ return new class extends Migration
         });
     }
 
-    /**
+    /** Escenari::inRandomOrder()->first()->id
      * Reverse the migrations.
      */
     public function down(): void

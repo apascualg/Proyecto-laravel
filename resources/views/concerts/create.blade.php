@@ -40,6 +40,14 @@
             @endforeach
         </select>
     </p>
+    <p>
+        <label for="escenari_id"> Escenari:</label>
+        <select name="escenari_id" id="escenari">
+            @foreach ($escenaris as $escenari)
+                <option value="{{ $escenari->id }}">{{ $escenari->nom }}</option>
+            @endforeach
+        </select>
+    </p>
 
     <p>
         <button type="submit">Crear</button>

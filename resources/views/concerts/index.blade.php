@@ -15,6 +15,7 @@
     <th>Data</th>
     <th>Tipus</th>
     <th>Més informació</th>
+    <th> Escenari </th>
 </tr>
 <tr>
     <td> {{ $concert -> nom  }}</td>
@@ -23,6 +24,7 @@
     <td style="background-color: @if($concert->tipus == 'CONCERT') black @elseif($concert->tipus == 'DJ_SET') white @elseif($concert->tipus == 'SHOWCASE') blue @elseif($concert->tipus == 'ACUSTIC') red @else transparent @endif;">
     </td>
     <td> <a href="{{route('concerts.show', $concert -> id)}}"> Veure</a></td>
+    <td> {{$concert -> escenari -> nom }} </td>
 </tr>
     @endforeach
 </table>

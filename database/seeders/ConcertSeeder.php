@@ -6,6 +6,7 @@ use App\Models\Artista;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Concert;
+use App\Models\Escenari;
 
 class ConcertSeeder extends Seeder
 {
@@ -22,6 +23,8 @@ class ConcertSeeder extends Seeder
                 'data_hora' => '2027-07-02 21:00:00',
                 'durada_minuts' => 90,
                 'tipus' => 'ACUSTIC',
+                'escenari_id' => Escenari::inRandomOrder()->first()->id
+
             ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Bad Bunny')->id,
@@ -29,6 +32,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-03-15 21:00:00',
                     'durada_minuts' => 120,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Bad Bunny')->id,
@@ -36,6 +40,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-04-22 20:30:00',
                     'durada_minuts' => 110,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Kanye West')->id,
@@ -43,6 +48,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-02-10 21:00:00',
                     'durada_minuts' => 100,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Kanye West')->id,
@@ -50,6 +56,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-05-18 22:00:00',
                     'durada_minuts' => 120,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Metro Boomin')->id,
@@ -57,6 +64,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-01-25 21:30:00',
                     'durada_minuts' => 90,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Metro Boomin')->id,
@@ -64,6 +72,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-06-05 20:00:00',
                     'durada_minuts' => 95,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Shoji Meguro')->id,
@@ -71,6 +80,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-03-08 19:30:00',
                     'durada_minuts' => 100,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Shoji Meguro')->id,
@@ -78,6 +88,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-08-14 20:00:00',
                     'durada_minuts' => 90,
                     'tipus' => 'ACUSTIC',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Tyler The Creator')->id,
@@ -85,6 +96,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-07-02 21:00:00',
                     'durada_minuts' => 90,
                     'tipus' => 'ACUSTIC',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Tyler The Creator')->id,
@@ -92,6 +104,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-09-17 21:30:00',
                     'durada_minuts' => 100,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Vaundy')->id,
@@ -99,6 +112,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-02-28 19:00:00',
                     'durada_minuts' => 105,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Vaundy')->id,
@@ -106,6 +120,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-05-30 20:30:00',
                     'durada_minuts' => 110,
                     'tipus' => 'CONCERT',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Benjamin Netanyahu')->id,
@@ -113,6 +128,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-04-12 18:00:00',
                     'durada_minuts' => 90,
                     'tipus' => 'ACUSTIC',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ],
                 [
                     'artista_id' => $artistesActius->firstWhere('nom', 'Benjamin Netanyahu')->id,
@@ -120,6 +136,7 @@ class ConcertSeeder extends Seeder
                     'data_hora' => '2027-10-01 19:00:00',
                     'durada_minuts' => 75,
                     'tipus' => 'ACUSTIC',
+                    'escenari_id' => Escenari::inRandomOrder()->first()->id
                 ]]);}
 
 }

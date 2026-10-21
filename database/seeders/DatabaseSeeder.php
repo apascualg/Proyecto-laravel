@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
         //los seeders se llaman siempre asi. Te lo vas copiando entre proyectos.
         $this->call([
             ArtistaSeeder::class,
+            EscenariSeeder::class,
             ConcertSeeder::class,
             UserSeeder::class,
+
         ]);
         // User::factory(10)->create();
 
