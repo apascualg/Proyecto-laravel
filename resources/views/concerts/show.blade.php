@@ -29,8 +29,20 @@
             </td>
             <td> {{$concert->escenari->nom}}</td>
             <td> {{$concert->escenari->aforament_maxim}}</td>
+
         </tr>
 </table>
+<br>
+
+<a href="{{ route('entradas.create', $concert) }}">
+    Comprar entrada
+</a>
+
+<br>
+
+<a href="{{ route('entradas.meves') }}">
+    Les meves entrades
+</a>
 </body>
 <script>
 </script>
