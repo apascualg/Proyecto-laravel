@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concert;
+use App\Models\Genere;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Artista extends Model
@@ -23,6 +25,11 @@ class Artista extends Model
     public function concerts(): HasMany
     {
         return $this->hasMany(Concert::class);
+    }
+    public function artistes():BelongsToMany
+    {
+        return $this->belongsToMany(Genere::class);
+
     }
 
 }
