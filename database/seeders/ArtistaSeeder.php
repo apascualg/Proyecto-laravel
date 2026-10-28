@@ -12,10 +12,10 @@ class ArtistaSeeder extends Seeder
 
     public function run(): void
     {
-        $rosalia = Artista::where('nom', 'Rosalía')->first();
-        $pop = Genere::where('nom', 'Pop')->first();
-        $electro = Genere::where('nom', 'Electrònica')->first();
-        $rosalia->generes()->attach([$pop->id, $electro->id]);
+//        $rosalia = Artista::where('nom', 'Rosalía')->first();
+//        $pop = Genere::where('nom', 'Pop')->first();
+//        $electro = Genere::where('nom', 'Electrònica')->first();
+//        $rosalia->generes()->attach([$pop->id, $electro->id]);
 
         Artista::insert([[
             'nom' => 'Tyler The Creator',
@@ -76,7 +76,7 @@ class ArtistaSeeder extends Seeder
                     'nom' => 'Benjamin Netanyahu',
                     'pais' => 'Israel',
                     'bio' => 'Cantante israelita.',
-                    'imatge_url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0Y6CdRQlID90paIUApJpDIDoHTI0ifrzdZGka7fC_xuvLplWSkzEjYbkfC267C6d3ouvnthQpt_THGW__zY8MF8i9DJzJhVmsW_gVIfj&s=10',
+                    'imatge_url' => null,
                     'actiu' => true,],
                 ]
 
