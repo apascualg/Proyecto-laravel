@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@vite('resources/css/css-custom.css')
+{{--@vite('resources/css/css-custom.css')--}}
 <a href="{{ route('artistas.create') }}"> CREAR UN NOU ARTISTA
 </a>
 <table border="1">
@@ -10,8 +10,9 @@
         <th>Imagen</th>
         <th>Activo</th>
         <th> Link </th>
+        <th> Generes </th>
     </tr>
-    @foreach($artistas as $lechota)
+@foreach($artistas as $lechota)
         <tr>
             <td>{{ $lechota->nom }}</td>
             <td>{{ $lechota->pais }}</td>
@@ -32,6 +33,12 @@
                 <a href="{{ route('artistas.edit', $lechota->id) }}"> MODIFICAR
                 </a>
             </td>
+        <td>
+            @foreach ($lechota->generes as $genere)
+                {{ $genere->nom }}{{ !$loop->last ? ', ' : '' }}
+            @endforeach
+        </td>
+
         </tr>
     @endforeach
 </table>

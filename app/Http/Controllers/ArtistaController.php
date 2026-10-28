@@ -13,6 +13,11 @@ class ArtistaController extends Controller
         return view('artistas.index', compact('artistas'));
         //
     }
+    public function indexgeneres() {
+        $artistas = Artista::with('generes')->orderBy('nom')->get();
+
+        return view('artistas.index', compact('artistas'));
+    }
     public function create()
     {
         $vista = 'create';

@@ -14,7 +14,7 @@ class Genere extends Model
         'nom',
             ];
 
-    public function generes(): BelongsToMany
+    public function artistes(): BelongsToMany
     {
         return $this->belongsToMany(Artista::class);
 

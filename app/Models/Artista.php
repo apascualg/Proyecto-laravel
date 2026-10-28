@@ -26,7 +26,7 @@ class Artista extends Model
     {
         return $this->hasMany(Concert::class);
     }
-    public function artistes():BelongsToMany
+    public function generes():BelongsToMany
     {
         return $this->belongsToMany(Genere::class);
 
