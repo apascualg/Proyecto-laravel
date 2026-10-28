@@ -38,4 +38,8 @@ class ConcertController extends Controller
     public function show(Concert $concert){
         return view('concerts.show', compact('concert'));
     }
+    public function top5(){
+        $concerts = Concert::withCount('entrades') ->orderBy('desc');
+        return view ('estadistiques', compact('concerts'));
+    }
 }
