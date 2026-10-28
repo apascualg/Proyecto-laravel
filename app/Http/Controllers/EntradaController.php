@@ -6,29 +6,39 @@ use App\Models\Concert;
 use App\Models\Entrada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class EntradaController extends Controller
 {
-    public function mevesentrades()
+    public function mevesentrades(): View
     {
         $entradas = Auth::user()
             ->entradas()
-            ->with('concert.artista', 'concert.escenari')
-            ->latest()
+            ->with(['concert.artista', 'concert.escenari'])
+            ->join('concerts', 'entradas.concert_id', '=', 'concerts.id')
+            ->select('entradas.*')
+            ->orderBy('concerts.data_hora')
             ->get();
 
         return view('entrades.meves', compact('entradas'));
     }
 
-    public function create(Concert $concert)
+    public function create(Concert $concert): View
     {
+        $concert->load(['artista', 'escenari']);
+
         return view('entrades.create', compact('concert'));
     }
 
     public function store(Request $request, Concert $concert)
     {
         $validated = $request->validate([
-            'preu_pagat' => ['required', 'numeric', 'min:0', 'max:999999.99'],
+            'preu_pagat' => [
+                'required',
+                'numeric',
+                'min:0',
+                'max:999999.99',
+            ],
         ]);
 
         Entrada::create([
@@ -42,8 +52,10 @@ class EntradaController extends Controller
             ->with('success', 'Entrada comprada correctament!');
     }
 
-    public function assistents(Concert $concert)
+    public function assistents(Concert $concert): View
     {
+        $concert->load(['escenari', 'artista']);
+
         $entradas = $concert->entradas()
             ->with('user')
             ->latest()

@@ -1,46 +1,42 @@
 @extends('layouts.app')
 
-@vite('resources/css/css-custom.css')
+@section('content')
+    <div class="container">
+        <h1>Comprar entrada</h1>
 
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Comprar entrada</title>
-</head>
-<body>
+        <h2>{{ $concert->nom }}</h2>
 
-<h1>Comprar entrada</h1>
+        <p>Artista: {{ $concert->artista->nom }}</p>
+        <p>Data: {{ $concert->data_hora->format('d/m/Y H:i') }}</p>
+        <p>Escenari: {{ $concert->escenari->nom }}</p>
 
-<h2>{{ $concert->nom }}</h2>
+        @if ($errors->any())
+            <div role="alert">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-<p>Artista: {{ $concert->artista->nom }}</p>
+        <form method="POST" action="{{ route('entradas.store', $concert) }}">
+            @csrf
 
-<p>Data: {{ $concert->data_hora }}</p>
+            <label for="preu_pagat">Preu pagat (€):</label>
 
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <p style="color: red;">{{ $error }}</p>
-    @endforeach
-@endif
+            <input
+                type="number"
+                id="preu_pagat"
+                name="preu_pagat"
+                min="0"
+                max="999999.99"
+                step="0.01"
+                value="{{ old('preu_pagat', 50) }}"
+                required
+            >
 
-<form method="POST" action="{{ route('entradas.store', $concert) }}">
-    @csrf
+            <button type="submit">Comprar entrada</button>
+        </form>
 
-    <label for="preu_pagat">Preu pagat (€):</label>
-
-    <input
-        type="number"
-        id="preu_pagat"
-        name="preu_pagat"
-        min="0"
-        max="999999.99"
-        step="0.01"
-        value="{{ old('preu_pagat', 50) }}"
-        required
-    >
-
-    <button type="submit">Comprar entrada</button>
-</form>
-
-</body>
-</html>
+        <a href="{{ route('concerts.show', $concert) }}">Tornar al concert</a>
+    </div>
+@endsection

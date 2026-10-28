@@ -30,10 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/concerts', [ConcertController::class, 'store'])->name('concerts.store');
     Route::get('/concerts/{concert}', [ConcertController::class, 'show'])->name('concerts.show');
     Route::match(['put', 'post'], '/artistas/{artista}', [ArtistaController::class, 'update'])->name('artistas.update');
-    Route::get('/mevesentrades', [EntradaController::class, 'mevesentrades'])->name('entradas.meves');
-    Route::get('/concerts/{concert}/entrades/create', [EntradaController::class, 'create'])->name('entradas.create');
-    Route::post('/concerts/{concert}/entrades', [EntradaController::class, 'store'])->name('entradas.store');
-    Route::get('/concerts/{concert}/assistents', [EntradaController::class, 'assistents'])->name('entradas.assistents');
+    Route::get('/mevesentrades', [EntradaController::class, 'mevesentrades'])
+        ->name('entradas.meves');
+
+    Route::get('/concerts/{concert}/entrades/create', [EntradaController::class, 'create'])
+        ->name('entradas.create');
+
+    Route::post('/concerts/{concert}/entrades', [EntradaController::class, 'store'])
+        ->name('entradas.store');
+
+    Route::get('/concerts/{concert}/assistents', [EntradaController::class, 'assistents'])
+        ->name('entradas.assistants');
 });
 
 require __DIR__.'/auth.php';

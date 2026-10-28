@@ -19,7 +19,7 @@ class Entrada extends Model
     {
         static::creating(function (Entrada $entrada) {
             if (empty($entrada->codi_entrada)) {
-                $entrada->codi_entrada = strtoupper(Str::random(12));
+                $entrada->codi_entrada = 'SONA-' . strtoupper(Str::random(8));
             }
         });
     }

@@ -1,50 +1,57 @@
 @extends('layouts.app')
-@vite('resources/css/css-custom.css')
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Concerts</title>
-</head>
-<body>
-<h1>Artistas</h1>
-<a href="{{ route('concerts.index') }}">Tornar</a>
 
-<div>
-    <h2> {{ $concert->nom }} </h2>
-</div>
-<table border="1">
-    <tr>
-        <th>Nom</th>
-        <th>Artista</th>
-        <th>Data</th>
-        <th>Tipus</th>
-        <th>Escenari</th>
-        <th>Aforament</th>
-    </tr>
-        <tr>
-            <td>{{ $concert->nom }}</td>
-            <td>{{ $concert->artista->nom }}</td>
-            <td>{{ $concert->data_hora }}</td>
-            <td style="background-color: @if($concert->tipus == 'CONCERT') black @elseif($concert->tipus == 'DJ_SET') pink @elseif($concert->tipus == 'SHOWCASE') blue @elseif($concert->tipus == 'ACUSTIC') red @else transparent @endif;">
-            </td>
-            <td> {{$concert->escenari->nom}}</td>
-            <td> {{$concert->escenari->aforament_maxim}}</td>
+@section('content')
+    @vite('resources/css/css-custom.css')
 
-        </tr>
-</table>
-<br>
+    <div class="container">
+        <h1>Detalls del concert</h1>
 
-<a href="{{ route('entradas.create', $concert) }}">
-    Comprar entrada
-</a>
+        <a href="{{ route('concerts.index') }}">Tornar als concerts</a>
 
-<br>
+        <h2>{{ $concert->nom }}</h2>
 
-<a href="{{ route('entradas.meves') }}">
-    Les meves entrades
-</a>
-</body>
-<script>
-</script>
-</html>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Artista</th>
+                <th>Data</th>
+                <th>Tipus</th>
+                <th>Escenari</th>
+                <th>Aforament màxim</th>
+                <th>Entrades venudes</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <tr>
+                <td>{{ $concert->nom }}</td>
+                <td>{{ $concert->artista->nom }}</td>
+                <td>{{ $concert->data_hora->format('d/m/Y H:i') }}</td>
+                <td>{{ $concert->tipus }}</td>
+                <td>{{ $concert->escenari->nom }}</td>
+                <td>{{ $concert->escenari->aforament_maxim }}</td>
+                <td>{{ $concert->entradas()->count() }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <a href="{{ route('entradas.create', $concert) }}">
+            Comprar entrada
+        </a>
+
+        <br><br>
+
+        <a href="{{ route('entradas.assistants', $concert) }}">
+            Veure assistents
+        </a>
+
+        <br><br>
+
+        <a href="{{ route('entradas.meves') }}">
+            Les meves entrades
+        </a>
+    </div>
+@endsection

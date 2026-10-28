@@ -1,41 +1,46 @@
 @extends('layouts.app')
 
-@vite('resources/css/css-custom.css')
+@section('content')
+    <div class="container">
+        <h1>Assistents</h1>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Assistents</title>
-</head>
-<body>
+        <h2>{{ $concert->nom }}</h2>
 
-<h1>Assistents</h1>
+        <p>Artista: {{ $concert->artista->nom }}</p>
+        <p>Escenari: {{ $concert->escenari->nom }}</p>
 
-<h2>{{ $concert->nom }}</h2>
+        <p>
+            {{ $entradas->count() }}
+            @if ($concert->escenari)
+                / {{ $concert->escenari->aforament_maxim }}
+            @endif
+            entrades venudes
+        </p>
 
-<a href="{{ route('concerts.index') }}">Tornar als concerts</a>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Data de compra</th>
+                <th>Codi d'entrada</th>
+            </tr>
+            </thead>
 
-<table border="1">
-    <tr>
-        <th>Nom</th>
-        <th>Email</th>
-        <th>Codi d'entrada</th>
-        <th>Data de compra</th>
-    </tr>
+            <tbody>
+            @forelse ($entradas as $entrada)
+                <tr>
+                    <td>{{ $entrada->user->name }}</td>
+                    <td>{{ $entrada->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $entrada->codi_entrada }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3">Encara no hi ha assistents per aquest concert.</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
 
-    @forelse ($entradas as $entrada)
-        <tr>
-            <td>{{ $entrada->user->name }}</td>
-            <td>{{ $entrada->user->email }}</td>
-            <td>{{ $entrada->codi_entrada }}</td>
-            <td>{{ $entrada->created_at }}</td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="4">Encara no hi ha assistents per aquest concert.</td>
-        </tr>
-    @endforelse
-</table>
-
-</body>
-</html>
+        <a href="{{ route('concerts.show', $concert) }}">Tornar al concert</a>
+    </div>
+@endsection
