@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genere;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Artista;
@@ -11,6 +12,11 @@ class ArtistaSeeder extends Seeder
 
     public function run(): void
     {
+        $rosalia = Artista::where('nom', 'Rosalía')->first();
+        $pop = Genere::where('nom', 'Pop')->first();
+        $electro = Genere::where('nom', 'Electrònica')->first();
+        $rosalia->generes()->attach([$pop->id, $electro->id]);
+
         Artista::insert([[
             'nom' => 'Tyler The Creator',
             'pais' => 'E.E.U.U',
