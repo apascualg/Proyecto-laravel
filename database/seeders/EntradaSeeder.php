@@ -6,7 +6,7 @@ use App\Models\Concert;
 use App\Models\Entrada;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Str;
 class EntradaSeeder extends Seeder
 {
     public function run(): void
@@ -51,6 +51,7 @@ class EntradaSeeder extends Seeder
                 'user_id' => $user->id,
                 'concert_id' => $concert->id,
                 'preu_pagat' => 50.00,
+                'codi_entrada' => 'SONA-' . strtoupper(Str::random(8))
             ]);
         }
 
