@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concert;
+use App\Models\Entrada;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Artista;
+
+
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Genere extends Model
@@ -19,4 +23,10 @@ class Genere extends Model
         return $this->belongsToMany(Artista::class);
 
     }
+    public function artistas(): BelongsToMany
+    {
+        return $this->belongsToMany(Entrada::class, Concert::class, Artista::class);
+
+    }
+
 }

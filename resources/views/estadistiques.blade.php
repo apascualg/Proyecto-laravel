@@ -78,10 +78,17 @@
     </thead>
     @foreach($escenaris as $escenari)
         <tr>
-            <td> {{$escenari -> nom}}</td>
+            <td>
+                {{$escenari -> nom}}
+            </td>
+        <td>
+            {{$escenari -> entradas -> sum('preu_pagat') }}
+        </td>
         </tr>
-        <tr> {{$escenari -> entrades -> sum('preu_pagat') }}</tr>
     @endforeach
 </table>
+@foreach($generes as $genere)
+    <p> {{$genere -> nom}} </p>
+@endforeach
 </body>
 </html>

@@ -16,7 +16,7 @@ class Escenari extends Model
     {
         return $this->hasMany(Concert::class);
     }
-    public function escenari(): hasManyThrough
+    public function entradas(): hasManyThrough
     {
         return $this-> hasManyThrough(Entrada::class, Concert::class);
     }
