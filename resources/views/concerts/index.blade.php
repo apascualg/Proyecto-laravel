@@ -8,6 +8,51 @@
     <title>Title</title>
 </head>
 <body>
+<form method="GET" action="{{ route('concerts.index') }}">
+
+    <label for="escenari_id">Escenari:</label>
+    <select name="escenari_id" id="escenari_id">
+        <option value="">Tots</option>
+
+        @foreach($escenaris as $escenari)
+            <option value="{{ $escenari->id }}"
+                {{ request('escenari_id') == $escenari->id ? 'selected' : '' }}>
+                {{ $escenari->nom }}
+            </option>
+        @endforeach
+    </select>
+
+    <label for="genere_id">Gènere:</label>
+    <select name="genere_id" id="genere_id">
+        <option value="">Tots</option>
+
+        @foreach($generes as $genere)
+            <option value="{{ $genere->id }}"
+                {{ request('genere_id') == $genere->id ? 'selected' : '' }}>
+                {{ $genere->nom }}
+            </option>
+        @endforeach
+    </select>
+
+    <label for="data_inici">Data inicial:</label>
+    <input
+        type="date"
+        name="data_inici"
+        id="data_inici"
+        value="{{ request('data_inici') }}"
+    >
+
+    <label for="data_fi">Data final:</label>
+    <input
+        type="date"
+        name="data_fi"
+        id="data_fi"
+        value="{{ request('data_fi') }}"
+    >
+
+    <button type="submit">Filtrar</button>
+
+</form>
 <table border="1">
     <tr>
         <th>Nom</th>

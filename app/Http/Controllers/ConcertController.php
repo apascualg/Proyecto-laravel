@@ -7,13 +7,49 @@ use App\Models\Concert;
 use App\Models\Escenari;
 use Database\Seeders\EscenariSeeder;
 use Illuminate\Http\Request;
+use App\Models\Genere;
 
 class ConcertController extends Controller
 {
 
-    public function index(){
-        $concerts = Concert::with(['artista', 'escenari'])->get();
-        return view('concerts.index', compact('concerts'));
+    public function index(Request $request){
+        // Préparer la requête avec les relations
+        $query = Concert::with(['artista.generes', 'escenari']);
+
+        // Filtre par escenari
+        if ($request->filled('escenari_id')) {
+            $query->where('escenari_id', $request->escenari_id);
+        }
+
+        // Filtre par genre de l'artiste
+        if ($request->filled('genere_id')) {
+            $query->whereHas('artista.generes', function ($q) use ($request) {
+                $q->where('generes.id', $request->genere_id);
+            });
+        }
+
+        // Filtre par date de début
+        if ($request->filled('data_inici')) {
+            $query->whereDate('data_hora', '>=', $request->data_inici);
+        }
+
+        // Filtre par date de fin
+        if ($request->filled('data_fi')) {
+            $query->whereDate('data_hora', '<=', $request->data_fi);
+        }
+
+        // Récupérer les concerts filtrés
+        $concerts = $query->get();
+
+        // Récupérer les options des filtres
+        $escenaris = Escenari::orderBy('nom')->get();
+        $generes = Genere::orderBy('nom')->get();
+
+        return view('concerts.index', compact(
+            'concerts',
+            'escenaris',
+            'generes'
+        ));
     }
     public function create (Concert $concert){
         $artistes = Artista::where('actiu', true)->orderBy('nom')->get();
