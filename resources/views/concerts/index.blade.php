@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @vite('resources/css/css-custom.css')
+<a href="{{route('concerts.create')}}"> CREAR UN CONCERT NOU</a>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,15 @@
 </head>
 <body>
 <table border="1">
+    <tr>
+        <th>Nom</th>
+        <th>Artista</th>
+        <th>Data</th>
+        <th>Tipus</th>
+        <th>Més informació</th>
+        <th> Escenari </th>
+    </tr>
 @foreach($concerts as $concert)
-<tr>
-    <th>Nom</th>
-    <th>Artista</th>
-    <th>Data</th>
-    <th>Tipus</th>
-    <th>Més informació</th>
-    <th> Escenari </th>
-</tr>
 <tr>
     <td> {{ $concert -> nom  }}</td>
     <td>{{ $concert->artista->nom }}</td>
@@ -28,7 +29,7 @@
 </tr>
     @endforeach
 </table>
-<a href="{{route('concerts.create')}}"> CREAR UN CONCERT NOU</a>
+
 
 </body>
 </html>

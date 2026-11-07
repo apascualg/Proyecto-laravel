@@ -19,17 +19,35 @@ class EstadistiquesController extends Controller
             'entradas',
             'preu_pagat'
         )->get();
+
         $generes = Genere::query()
             ->join('artista_genere', 'generes.id', '=', 'artista_genere.genere_id')
-            ->join('artistes', 'artista_genere.artista_id', '=', 'artistes.id')
-            ->join('concerts', 'artistes.id', '=', 'concerts.artista_id')
+            ->join('artistas', 'artista_genere.artista_id', '=', 'artistas.id')
+            ->join('concerts', 'artistas.id', '=', 'concerts.artista_id')
             ->join('entradas', 'concerts.id', '=', 'entradas.concert_id')
-            ->select('generes.*')
-            ->selectRaw('COUNT(entradas.id) as total_entrades')
+            ->select('generes.id', 'generes.nom')
+            ->selectRaw('COUNT(DISTINCT entradas.id) as total_entrades')
             ->groupBy('generes.id', 'generes.nom')
             ->orderByDesc('total_entrades')
             ->get();
-        
-        return view ('estadistiques', compact('concerts', 'artistas', 'escenaris', 'generes'));
+
+        $escenaris2 = Escenari::with('concerts.entradas')->get();
+
+        foreach ($escenaris2 as $escenari) {
+            $entradesVenudes = 0;
+            $numConcerts = $escenari->concerts->count();
+            foreach ($escenari->concerts as $concert) {
+                $entradesVenudes += $concert->entradas->count();
+            }
+            if ($escenari->aforament_maxim > 0 && $numConcerts > 0) {
+                $escenari->ocupacio_mitjana = round(
+                    ($entradesVenudes / ($escenari->aforament_maxim * $numConcerts)) * 100,
+                    2
+                )*100;
+            } else {
+                $escenari->ocupacio_mitjana = 0;
+            }
+        }
+        return view ('estadistiques', compact('concerts', 'artistas', 'escenaris', 'generes', 'escenaris2'));
     }
 }

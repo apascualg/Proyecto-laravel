@@ -8,17 +8,17 @@
 </head>
 <body>
 <h1> Els 5 concerts amb més entrades </h1>
-<table border="1">
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Artista</th>
+        <th>Data</th>
+        <th>Tipus</th>
+        <th>Més informació</th>
+        <th> Escenari </th>
+        <th> Entrades venudes </th>
+    </tr>
     @foreach($concerts as $concert)
-        <tr>
-            <th>Nom</th>
-            <th>Artista</th>
-            <th>Data</th>
-            <th>Tipus</th>
-            <th>Més informació</th>
-            <th> Escenari </th>
-            <th> Entrades venudes </th>
-        </tr>
         <tr>
             <td> {{ $concert -> nom  }}</td>
             <td>{{ $concert->artista->nom }}</td>
@@ -71,10 +71,11 @@
     @endforeach
 </table>
 
+<h1> Recaptació total per escenari </h1>
 <table>
     <thead>
-    <td>Nom de l'escenari</td>
-    <td>Quantitat recaptada</td>
+    <th>Nom de l'escenari</th>
+    <th>Quantitat recaptada</th>
     </thead>
     @foreach($escenaris as $escenari)
         <tr>
@@ -87,8 +88,40 @@
         </tr>
     @endforeach
 </table>
+<h1> Els generes més populars </h1>
+<table>
+    <tr>
+        <th> Nom </th>
+        <th> Quantitat </th>
+    </tr>
 @foreach($generes as $genere)
-    <p> {{$genere -> nom}} </p>
+    <tr>
+        <td> {{$genere -> nom}}</td>
+        <td>{{$genere -> total_entrades}}</td>
+    </tr>
 @endforeach
+</table>
+
+<h1> Ocupació mitjana per escenari </h1>
+<table>
+    <tr>
+        <th>
+            Nom de l'escenari
+        </th>
+        <th>
+            Ocupació mitjana
+        </th>
+    </tr>
+    @foreach($escenaris2 as $escenari)
+        <tr>
+            <td>
+                {{$escenari -> nom}}
+            </td>
+            <td>
+                {{$escenari -> ocupacio_mitjana}}
+            </td>
+        </tr>
+    @endforeach
+</table>
 </body>
 </html>
