@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Artista extends Model
 {
     protected $fillable = [
-        'id',
-        'artista_id',
+        'nom',
+        'pais',
         'bio',
         'imatge_url',
         'actiu',

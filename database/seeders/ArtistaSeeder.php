@@ -85,18 +85,27 @@ class ArtistaSeeder extends Seeder
         $hiphop = Genere::where('nom', 'Hip-Hop')->first();
         $indie = Genere::where('nom', 'Indie')->first();
         $electro = Genere::where('nom', 'Electrònica')->first();
-
+        $jazz = Genere::where('nom', 'Jazz')->first();
 
         // Cojemos cantantes
         $benjamin = Artista::where('nom', 'Benjamin Netanyahu')->first();
         $tyler = Artista::where('nom', 'Tyler The Creator')->first();
         $kingbon = Artista::where('nom', 'King Von')->first();
         $metroboomin = Artista::where('nom', 'Metro Boomin')->first();
-
+        $kanye = Artista::where('nom', 'Kanye West')->first();
+        $vaundy = Artista::where('nom', 'Vaundy')->first();
+        $shoji = Artista::where('nom', 'Shoji Meguro')->first();
+        $badbunny = Artista::where('nom', 'Bad Bunny')->first();
+        $xxx = Artista::where('nom', 'XXXTentacion')->first();
         // assignamos sus generos a cada artista
         $benjamin->generes()->attach([$pop->id, $electro->id]);
         $tyler->generes()->attach([$rock->id, $indie->id]);
         $kingbon->generes()->attach([$indie->id, $hiphop->id]);
         $metroboomin->generes()->attach([$hiphop->id, $electro->id]);
+        $kanye->generes()->attach([$hiphop->id, $pop->id]);
+        $vaundy->generes()->attach([$rock->id, $indie->id]);
+        $shoji->generes()->attach([$jazz->id, $electro->id]);
+        $badbunny->generes()->attach([$hiphop->id, $pop->id]);
+        $xxx->generes()->attach([$hiphop->id]);
     }
 }

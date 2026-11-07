@@ -10,6 +10,7 @@
         <th>Imagen</th>
         <th>Activo</th>
         <th> Link </th>
+        <th> Modificar </th>
         <th> Generes </th>
     </tr>
 @foreach($artistas as $lechota)

@@ -4,7 +4,6 @@
 @section('title', $vista == 'update' ? 'Modificar ' . $artista->nom : 'Crear un nuevo artista')
 @section('content')
 
-    @vite('resources/css/css-custom.css')
     <h1>Nuevo artista</h1>
     <a href="{{ route('artistas.index') }}">Tornar</a>
 <form action="{{ $vista == 'update' ? route('artistas.update', $artista->id) : route('artistas.store') }}" method="POST">
@@ -47,6 +46,19 @@
 
     <p>
         <button type="submit">{{ $vista == 'update' ? 'Modificar' : 'Crear' }}</button>
+    </p>
+    <p>
+        <label>Gèneres:</label><br>
+        @foreach($generes as $genere)
+            <label>
+                <input type="checkbox"
+                       name="generes[]"
+                       value="{{ $genere->id }}"
+                    {{ in_array($genere->id, old('generes', $artista->generes->pluck('id')->toArray())) ? 'checked' : '' }}>
+                {{ $genere->nom }}
+            </label>
+        @endforeach
+        @error('generes.*') <span style="color: red"> {{ $message }} </span> @enderror
     </p>
 </form>
 <style>

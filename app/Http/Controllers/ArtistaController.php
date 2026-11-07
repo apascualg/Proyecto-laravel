@@ -3,27 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artista;
+use App\Models\Genere;
 use Illuminate\Http\Request;
 
 class ArtistaController extends Controller
 {
     public function index()
     {
-        $artistas = Artista::orderBy('nom')->get();
-        return view('artistas.index', compact('artistas'));
-        //
-    }
-    public function indexgeneres() {
         $artistas = Artista::with('generes')->orderBy('nom')->get();
-
         return view('artistas.index', compact('artistas'));
     }
+
     public function create()
     {
         $vista = 'create';
         $artista = new Artista();
-        return view('artistas.form', compact('vista'));
+        $generes = Genere::orderBy('nom')->get();
+        return view('artistas.form', compact('artista', 'vista', 'generes'));
     }
+
 
     public function store(Request $request){
         $data = $request->validate([
@@ -32,12 +30,15 @@ class ArtistaController extends Controller
             'bio'        => 'nullable|string',
             'imatge_url' => 'nullable|url',
             'actiu'      => 'sometimes|boolean',
+            'generes'    => 'nullable|array',
+            'generes.*'  => 'exists:generes,id',
         ]);
 
         $data['actiu'] = $request->boolean('actiu');
 
-        //CREATE HACE UN INSERT DE ESO EN LA BD
-        Artista::create($data);
+        $artista = Artista::create($data);
+
+        $artista->generes()->sync($request->input('generes', []));
 
         //hago un redirect a una ruta conocida
         return redirect()->route('artistas.index');
@@ -57,8 +58,8 @@ class ArtistaController extends Controller
 
         $artista = Artista::findOrFail($id);
         $vista = 'update';
-        //hago un redirect a una ruta conocida
-        return view('artistas.form', compact('artista', 'vista'));
+        $generes = Genere::orderBy('nom')->get();
+        return view('artistas.form', compact('artista', 'vista', 'generes'));
 
     }
 
@@ -75,9 +76,10 @@ class ArtistaController extends Controller
         // Actualiza el registro con los nuevos datos
         $artista->update($data);
 
+        $artista->generes()->sync($request->input('generes', []));
+
         return redirect()->route('artistas.index');
     }
-
     /**
      * Remove the specified resource from storage.
      */

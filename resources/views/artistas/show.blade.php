@@ -1,4 +1,3 @@
-@vite('resources/css/css-custom.css')
 @extends('layouts.app')
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,14 @@
     @else
         <p> ESTÁ ACTIVO </p>
     @endif
-
+    <p>
+        <strong>Gèneres:</strong>
+        @forelse($artista->generes as $genere)
+            {{ $genere->nom }}{{ !$loop->last ? ', ' : '' }}
+        @empty
+            Cap gènere assignat.
+        @endforelse
+    </p>
 </div>
 <table border="1">
     <tr>
