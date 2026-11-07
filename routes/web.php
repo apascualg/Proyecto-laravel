@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConcertController;
+use App\Http\Controllers\EstadistiquesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntradaController;
 
@@ -41,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/concerts/{concert}/assistents', [EntradaController::class, 'assistents'])
         ->name('entradas.assistants');
+    Route::get('/estadistiques', [EstadistiquesController::class, 'index'])
+        ->name('estadistiques');
 });
 
 require __DIR__.'/auth.php';
