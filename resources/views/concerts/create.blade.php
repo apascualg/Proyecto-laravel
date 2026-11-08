@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @vite('resources/css/css-custom.css')
 <form action="{{route('concerts.store')}}" method="POST">
     @csrf
     <p>

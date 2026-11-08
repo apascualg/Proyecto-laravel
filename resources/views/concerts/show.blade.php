@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @vite('resources/css/css-custom.css')
 
     <div class="container">
         <h1>Detalls del concert</h1>
@@ -38,9 +37,13 @@
 
         <br>
 
-        <a href="{{ route('entradas.create', $concert) }}">
-            Comprar entrada
-        </a>
+        <form action="{{ route('entradas.create', $concert) }}" method="GET">
+            <button type="submit"
+                {{ $concert->entradas->count() >= $concert->escenari->aforament_maxim ? 'disabled' : '' }}>
+                Comprar entrada
+                {{ $concert->entradas->count() >= $concert->escenari->aforament_maxim ? '(esgotades, la proxima donat mes presa ja no queden!)' : '' }}
+            </button>
+        </form>
 
         <br><br>
 

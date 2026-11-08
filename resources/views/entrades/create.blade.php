@@ -10,13 +10,16 @@
         <p>Data: {{ $concert->data_hora->format('d/m/Y H:i') }}</p>
         <p>Escenari: {{ $concert->escenari->nom }}</p>
 
-        @if ($errors->any())
-            <div role="alert">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+        @error('aforament')
+        <p role="alert" style="color: red">{{ $message }}</p>
+        @enderror
+
+        @error('preu_pagat')
+        <p role="alert" style="color: red">{{ $message }}</p>
+        @enderror
+        @error('duplicada')
+        <p role="alert" style="color: red">{{ $message }}</p>
+        @enderror
 
         <form method="POST" action="{{ route('entradas.store', $concert) }}">
             @csrf

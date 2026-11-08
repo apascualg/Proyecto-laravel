@@ -16,6 +16,9 @@
             @endif
             entrades venudes
         </p>
+        @if ($entradas->count() >= $concert->escenari->aforament_maxim)
+            <p><strong>Esgotades</strong></p>
+        @endif
 
         <table>
             <thead>

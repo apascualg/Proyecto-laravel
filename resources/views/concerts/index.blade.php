@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@vite('resources/css/css-custom.css')
 <a href="{{route('concerts.create')}}"> CREAR UN CONCERT NOU</a>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +48,7 @@
         id="data_fi"
         value="{{ request('data_fi') }}"
     >
+    <input type="text" name="cerca" placeholder="Cerca per nom" value="{{ request('cerca') }}">
 
     <button type="submit">Filtrar</button>
 

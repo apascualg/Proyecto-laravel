@@ -37,6 +37,16 @@ class ConcertController extends Controller
         if ($request->filled('data_fi')) {
             $query->whereDate('data_hora', '<=', $request->data_fi);
         }
+        // filtre del extra
+        if ($request->filled('cerca')) {
+            $cerca = $request->cerca;
+            $query->where(function ($q) use ($cerca) {
+                $q->where('nom', 'like', '%' . $cerca . '%')
+                    ->orWhereHas('artista', function ($q2) use ($cerca) {
+                        $q2->where('nom', 'like', '%' . $cerca . '%');
+                    });
+            });
+        }
 
         // Récupérer les concerts filtrés
         $concerts = $query->get();

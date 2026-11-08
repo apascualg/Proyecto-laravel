@@ -32,6 +32,14 @@ class EntradaController extends Controller
 
     public function store(Request $request, Concert $concert)
     {
+        $concert->load('escenari');
+
+        if ($concert->entradas->count() >= $concert->escenari->aforament_maxim) {
+            return back()->withErrors(['aforament' => 'Aquest concert està ple.']);
+        }
+        if ($concert->entradas()->where('user_id', Auth::id())->count() > 0) {
+            return back()->withErrors(['duplicada' => 'Ja tens una entrada per aquest concert.']);
+        }
         $validated = $request->validate([
             'preu_pagat' => [
                 'required',
